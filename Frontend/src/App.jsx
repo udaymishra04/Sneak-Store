@@ -8,14 +8,17 @@ import LandingPage from './pages/LandingPage';
 import ShopPage from './pages/ShopPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
+import CartPage from './pages/CartPage';
 import CategoryPage from './pages/CategoryPage';
-import { CartContextProvider } from './context/CartContextProvider';
+import CartProvider from './context/CartProvider';
 import './App.css';
 
 function App() {
   useEffect(() => {
     AOS.init({ once: true,}); // 'once' animates only once per element
   }, []);
+
+
   return (
     <CartProvider>
     <Router>
@@ -27,6 +30,7 @@ function App() {
           <Route path="/categories" element={<CategoryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
       <Footer />

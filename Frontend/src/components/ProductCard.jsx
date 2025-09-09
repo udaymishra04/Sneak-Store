@@ -1,36 +1,51 @@
 import React, { useState } from 'react';
+import { CartState } from "../context/CartProvider";
 import "../styles/ProductCard.css";
 
-function ProductCard({ image, name, price, rating }) {
-  const [cartCount, setCartCount] = React.useState(0);
+function ProductCard(prod) {
 
-  function addToCart () {
-    setCartCount(cartCount + 1);
-    // document.getElementById("add-to-cart-button").style.display = "none";
-    // document.getElementById("add-to-cart-counter").style.display = "inline-block";
-  };
-  function incrementCart() {
-    setCartCount(cartCount + 1);
-  }
-  function decrementCart() {
-    setCartCount(cartCount > 0 ? cartCount - 1 : 0);
-    if (cartCount <= 1) {
-      // document.getElementById("add-to-cart-button").style.display = "inline-block";
-      // document.getElementById("add-to-cart-counter").style.display = "none";
-    }
-  }
+  const {state: {cart},dispatch} = CartState();
+  console.log(cart);
+  const quantityInCart = cart.find(item => item.id === prod.id)?.qty || 0;
+
   return (
     <div className="product-card">
-      <img src={image} alt={name} className="product-image" />
-      <h3 className="product-name txt-center">{name}</h3>
-      <p className="product-price txt-center">${price}</p>
-      <p className="text-yellow-500 py-1 txt-center">{"⭐".repeat(rating)}</p>
-      <button onClick={addToCart} id="add-to-cart-button" className="add-to-cart-button">Add to Cart</button>
-      {/* <div style={{display: "none"}} id="add-to-cart-counter" className="add-to-cart-counter">
-        <button className="cart-button-increment" onClick={incrementCart}>+</button>
-        <span className="cart-count">{cartCount}</span>
-        <button className="cart-button-decrement" onClick={decrementCart}>-</button>
-      </div> */}
+      <img src={prod.img} alt={prod.name} className="product-image" />
+      <h3 className="product-name txt-center">{prod.name}</h3>
+      <p className="product-price txt-center">${prod.price}</p>
+      <p className="text-yellow-500 py-1 txt-center">{"⭐".repeat(prod.rating)}</p>
+        {quantityInCart > 0 ? (
+          <div className='flex justify-content-center align-items-center g-10'>
+          <button 
+            onClick={() =>
+
+              dispatch({
+                type: "ADD_TO_CART",
+                payload: prod,
+              })
+            
+        }
+        id="add-to-cart-button" className="add-to-cart-button">+</button>
+          <span className="mx-2"><h3>{quantityInCart}</h3></span>
+          <button 
+            onClick={() =>
+              dispatch({
+                type: "REMOVE_FROM_CART",
+                payload: prod,
+              })
+            } 
+            id="remove-from-cart-button" className="remove-from-cart-button">-</button>
+        </div>
+         ) :  (
+        <button 
+          onClick={() =>
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: prod,
+          })        
+        }
+        id="add-to-cart-button" className="add-to-cart-button">Add to Cart</button>
+      )}
     </div>
   );
 }

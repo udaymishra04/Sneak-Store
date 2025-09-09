@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.c-white{
+  color: white;
+}
+
 header {
   width: 100%;
   position: sticky;
@@ -95,4 +99,17 @@ header nav {
   color: white;
   outline: none;
   transition: all 0.3s ease;
+}
+
+.flex{
+  display: flex;
+  gap: 6px;
+}
+
+.justify-content-center{
+  justify-content: center;
+}
+
+.align-items-center{
+  align-items: center;
 }

@@ -4,9 +4,15 @@ import "../styles/LandingPage.css";
 import Sneaker from '../assets/Images/Air_Jordan.png';
 import ProductCard from "../components/ProductCard";
 import SneakerBrands from "../components/SneakerBrands";
+import { CartState } from "../context/CartProvider";
 
 function LandingPage() {
   const imgUrl = "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/76e54683-5822-464c-a8cf-8b366b629675/AIR+MAX+DN.png";
+  
+  const {state} = CartState();
+  console.log(state);
+
+
   return (
     <>
       <div data-aos="fade-in" className="hero">
