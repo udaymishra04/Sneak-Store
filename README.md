@@ -8,7 +8,7 @@ It provides a seamless shopping experience with authentication, product browsing
 ## 🔗 Project Links
 - **Frontend Repo:** [Frontend](./Frontend)  
 - **Backend Repo:** [Backend](./Backend)  
-- **Live Demo:** *(Add your deployed link here once available)*  
+- **Live Demo:** [SeakStore](https://sneak-store.vercel.app/)  
 
 ---
 
@@ -43,31 +43,6 @@ It provides a seamless shopping experience with authentication, product browsing
 
 ---
 
-## 📂 Project Structure
-
-Sneak-Store/
-├── Backend/ # Express + MongoDB API
-│ ├── config/ # Database connection
-│ ├── models/ # Mongoose models
-│ ├── routes/ # API routes
-│ ├── controllers/ # Route controllers
-│ ├── server.js # App entry point
-│ └── package.json
-│
-├── Frontend/ # React + Vite client
-│ ├── src/
-│ │ ├── components/ # Reusable components
-│ │ ├── pages/ # Route-based pages
-│ │ ├── context/ # CartProvider, AuthProvider
-│ │ ├── services/ # API calls
-│ │ └── styles/ # CSS
-│ ├── vite.config.js
-│ └── package.json
-│
-├── .gitignore
-├── README.md
-└── package.json # (optional root-level scripts)
-
 2️⃣ Setup Backend
 
 cd Backend
@@ -97,5 +72,3 @@ Start frontend:
 npm run dev
 
 Frontend runs at: http://localhost:5173
-
-## 📂 Project Structure
