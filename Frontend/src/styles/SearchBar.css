@@ -1,0 +1,233 @@
+/* ProductSearch.css */
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.search-icon svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-input:focus {
+  outline: none;
+  ring: 2px solid #f97316;
+  border-color: transparent;
+}
+
+.search-clear-button {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-clear-button svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.search-clear-button:hover svg {
+  color: white;
+}
+
+.search-dropdown-container {
+  position: absolute;
+  z-index: 50;
+  width: 100%;
+  margin-top: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.search-dropdown-empty {
+  padding: 1rem;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.search-dropdown-results {
+  padding: 0.5rem 0;
+}
+
+.search-product-item {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: inherit;
+}
+
+.search-product-item:hover,
+.search-product-item.search-highlighted {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-product-image {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.search-product-details {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-product-name {
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-product-brand {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.search-product-price {
+  color: #f97316;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.search-results-count {
+  position: absolute;
+  z-index: 40;
+  width: 100%;
+  margin-top: 0.5rem;
+  transform: translateY(100%);
+}
+
+.search-results-count-text {
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(4px);
+  color: #d1d5db;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* Scrollbar styling for dropdown */
+.search-dropdown-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-dropdown-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.search-dropdown-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.search-dropdown-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Focus and accessibility styles */
+.search-input:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: 2px;
+}
+
+.search-product-item:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-product-item:focus-visible {
+  outline: 2px solid #f97316;
+  outline-offset: -2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .search-container {
+    max-width: 100%;
+  }
+  
+  .search-input {
+    padding: 0.75rem 2rem 0.75rem 2.5rem;
+  }
+  
+  .search-product-item {
+    padding: 0.75rem;
+  }
+  
+  .search-product-image {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .search-product-name {
+    font-size: 0.8rem;
+  }
+  
+  .search-product-price {
+    font-size: 0.8rem;
+  }
+}

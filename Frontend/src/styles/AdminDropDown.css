@@ -1,0 +1,163 @@
+/* ProfileDropdownNavbar.css */
+
+/* Navbar container */
+.admin-navbar {
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .admin-navbar-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-navbar-container {
+    padding: 0 2rem;
+  }
+}
+
+.admin-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+/* Brand section */
+.admin-navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.admin-brand-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Navigation section */
+.admin-navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.admin-nav-link {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.admin-nav-link:hover {
+  color: #111827;
+}
+
+/* Profile dropdown */
+.admin-profile-dropdown {
+  position: relative;
+}
+
+.admin-profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  /* border-radius: 50%; */
+  /* background-color: #f3f4f6;
+   */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-profile-button:hover {
+  /* background-color: #e5e7eb; */
+}
+
+.admin-profile-button:focus {
+  /* outline: none;
+  box-shadow: 0 0 0 2px #3b82f6; */
+}
+
+.admin-profile-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #4b5563;
+}
+
+/* Dropdown menu */
+.admin-dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 12rem;
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 50;
+}
+
+.admin-dropdown-content {
+  padding: 0.25rem 0;
+}
+
+.admin-dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/*.admin-dropdown-item:hover {
+  background-color: #f3f4f6;
+} */
+
+.admin-dropdown-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
+  color: #6b7280;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .admin-navbar-nav {
+    gap: 1rem;
+  }
+  
+  .admin-nav-link {
+    display: none;
+  }
+  
+  .admin-nav-link:last-of-type {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-navbar-container {
+    padding: 0 0.5rem;
+  }
+  
+  .admin-brand-text {
+    font-size: 1.125rem;
+  }
+}

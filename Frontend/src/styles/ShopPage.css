@@ -7,6 +7,10 @@
   margin-right: auto;
 }
 
+.pd-3{
+  padding: 3px;
+}
+
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -196,4 +200,18 @@
 
 .hover\:bg-gray-800:hover {
   background: #1f2937;
+}
+
+.clear-filters-button{
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 10px;
+  transition: all 3 ease-in;
+}
+
+.clear-filters-button:hover{
+  transform: scale(1.01);
+  box-shadow: 0px 5px 5px black;
 }

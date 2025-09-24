@@ -1,42 +1,82 @@
+import { CartState } from "../context/CartProvider";
+
+
 export default function Filters() {
 
-  const toggleFilter = (type, value) => {
-    setFilters((prev) => {
-      const updated = { ...prev };
-      if (updated[type].includes(value)) {
-        updated[type] = updated[type].filter((item) => item !== value);
-      } else {
-        updated[type].push(value);
-      }
-      return updated;
-    });
-  };
-
+  const {productState: {sort, category, rating, brand, searchQuery}, productDispatch } = CartState();
+  console.log(sort)
   return (    
       <aside className="w-64 bg-gray-100 rounded-xl p-5 hidden md:block">
         <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
+        <div className="mb-5">
+          <h3 className="font-medium mb-2">Sort</h3>
+          <label className="block pd-3">
+            <input
+              type="radio"
+              onChange={
+                () => {productDispatch({
+                  type: "SORT_BY_PRICE",
+                  payload: "lowToHigh",
+                })}
+              }
+              checked = {sort === "lowToHigh"? true:false}
+              />
+            Price: Low to High
+              </label>        
+        <label className="block pd-3">
+            <input
+              type="radio"
+              onChange={
+                () => {productDispatch({
+                  type: "SORT_BY_PRICE",
+                  payload: "highToLow",
+                })}
+              }
+              checked = {sort === "highToLow"? true:false}
+              />
+            Price: High to Low
+              </label>
+        </div>
         {/* Categories */}
         <div className="mb-5">
           <h3 className="font-medium mb-2">Category</h3>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("category", "Sneakers")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_CATEGORY",
+                  payload: "sneakers",
+                })}
+              }
+              checked = {category.includes("sneakers")? true:false}
             />{" "}
             Sneakers
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("category", "Running")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_CATEGORY",
+                  payload: "running",
+                })}
+              }
+              checked = {category.includes("running")? true:false}
             />{" "}
             Running Shoes
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("category", "Casual")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_CATEGORY",
+                  payload: "casual",
+                })}
+              }
+              checked = {category.includes("casual")? true:false}
             />{" "}
             Casual
           </label>
@@ -45,17 +85,33 @@ export default function Filters() {
         {/* Ratings */}
         <div className="mb-5">
           <h3 className="font-medium mb-2">Ratings</h3>
-          <label className="block">
+          <label className="block pd-3">
             <input
-              type="checkbox"
-              onChange={() => toggleFilter("rating", "4")}
+              type="radio"
+              name="rating"
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_RATING",
+                  payload: "4",
+                })}
+              }
+              checked = {rating.includes("4")? true:false
+              }
             />{" "}
             ⭐ 4 & above
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
-              type="checkbox"
-              onChange={() => toggleFilter("rating", "3")}
+              type="radio"
+              name="rating"
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_RATING",
+                  payload: "3",
+                })}
+              }
+              checked = {rating.includes("3")? true:false
+              }
             />{" "}
             ⭐ 3 & above
           </label>
@@ -64,34 +120,67 @@ export default function Filters() {
         {/* Brands */}
         <div className="mb-5">
           <h3 className="font-medium mb-2">Brands</h3>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("brand", "Nike")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_BRAND",
+                  payload: "Nike",
+                })}
+              }
+              checked = {brand.includes("Nike")? true:false
+              }
             />{" "}
             Nike
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("brand", "Adidas")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_BRAND",
+                  payload: "Adidas",
+                })}
+              }
+              checked = {brand.includes("Adidas")? true:false
+              }
             />{" "}
             Adidas
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("brand", "Puma")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_BRAND",
+                  payload: "Puma",
+                })}
+              }
+              checked = {brand.includes("Puma")? true:false
+              }
             />{" "}
             Puma
           </label>
-          <label className="block">
+          <label className="block pd-3">
             <input
               type="checkbox"
-              onChange={() => toggleFilter("brand", "New Balance")}
+              onChange={
+                () => {productDispatch({
+                  type: "FILTER_BY_BRAND",
+                  payload: "New Balance",
+                })}
+              }
+              checked = {brand.includes("New Balance")? true:false
+              }
             />{" "}
             New Balance
           </label>
+            <button className="clear-filters-button mt-10 w-full pd-10"
+            onClick={() => productDispatch({type: "CLEAR_FILTERS"})}
+            >
+              Clear Filters
+            </button>
         </div>
       </aside>
   );

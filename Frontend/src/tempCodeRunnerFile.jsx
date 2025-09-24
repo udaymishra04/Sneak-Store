@@ -1,0 +1,1 @@
+{(!isLoggedIn || (user && user.role !== 'admin')) && <Header />}

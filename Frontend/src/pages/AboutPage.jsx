@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import contentCards from '../data/contentCards';
+import { useNavigate } from 'react-router-dom';
 import '../styles/AboutPage.css';
 
 function AboutUs() {
@@ -12,7 +13,7 @@ function AboutUs() {
   ];
 
   return (
-    <div className="about-about-container">
+    <div data-aos="fade-in" className="about-about-container">
       {/* Hero Section */}
       <div className="about-hero-section">
         <h1 className="about-hero-title">SNEAKHEAD</h1>
