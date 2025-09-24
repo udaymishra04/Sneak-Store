@@ -1,3 +1,3 @@
 // src/config/api.js
-const API = "http://localhost:3000/api"; // jab tak local run kar raha hai
+const API = "https://sneak-store-backend.onrender.com/"; // jab tak local run kar raha hai
 export default API;
