@@ -26,43 +26,55 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      # Install Backend
       - name: Install Backend dependencies
         working-directory: ./Backend
         run: npm install
 
-      # Install Frontend
       - name: Install Frontend dependencies
         working-directory: ./Frontend
         run: npm install
 
-      # Build Frontend
       - name: Build Frontend for production
         working-directory: ./Frontend
         run: npm run build
 
   deploy:
-    needs: build # The deploy step will only run if the build step passes
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy to production
-      uses: johnbeynon/render-deploy-action@v0.0.8
-      with:
-        service-id: ${{ secrets.RENDER_SERVICE_ID }}
-        api-key: ${{ secrets.RENDER_API_KEY }}
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+
   frontend-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      #  your build commands
-      # - run: |
-      #    ng build --prod
-      - uses: amondnet/vercel-action@v25 # deploy
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Optional
-          vercel-args: --prod # Optional
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}} # Required
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} # Required
-          working-directory: Frontend
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install Frontend dependencies
+        working-directory: ./Frontend
+        run: npm install
+
+      - name: Build Frontend for production
+        working-directory: ./Frontend
+        run: npm run build
+
+      - name: Show Vercel Version
+        run: npx vercel --version
+
+      - name: Deploy with Debug
+        working-directory: ./Frontend
+        run: npx vercel --prod --debug
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
