@@ -26,14 +26,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      # Install & test backend (if you have tests)
-      - name: Install backend dependencies
-        working-directory: ./backend
+      # Install & test Backend (if you have tests)
+      - name: Install Backend dependencies
+        working-directory: ./Backend
         run: npm install
 
-      - name: Test backend
-        working-directory: ./backend
-        run: npm test || echo "No backend tests defined"
+      - name: Test Backend
+        working-directory: ./Backend
+        run: npm test || echo "No Backend tests defined"
 
       # Install & test frontend
       - name: Install frontend dependencies
