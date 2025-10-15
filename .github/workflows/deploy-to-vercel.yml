@@ -73,7 +73,7 @@ jobs:
 
       - name: Deploy with Debug
         working-directory: ./Frontend
-        run: npx vercel --prod --yes --token=${{ env.VERCEL_TOKEN }} --debug
+        run: npx vercel --prod --yes --debug
         env:
           VERCEL_TOKEN: ${{ env.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ env.VERCEL_ORG_ID }}
