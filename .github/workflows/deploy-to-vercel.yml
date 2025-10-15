@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
 jobs:
   build:
     name: Build & Test
@@ -38,6 +43,9 @@ jobs:
         working-directory: ./Frontend
         run: npm run build
 
+      - name: Show Vercel Version
+        run: npx vercel --version
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -52,33 +60,14 @@ jobs:
   frontend-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22.x
-          cache: 'npm'
-
-      - name: Install Frontend dependencies
-        working-directory: ./Frontend
-        run: npm install
-
-      - name: Build Frontend for production
-        working-directory: ./Frontend
-        run: npm run build
-
-      - name: Show Vercel Version
-        run: npx vercel --version
-
-      - name: Deploy with Debug
-        working-directory: ./Frontend
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          echo "Token length: ${#VERCEL_TOKEN}"
-          npx vercel --prod --yes --debug --token=${VERCEL_TOKEN} --cwd=./Frontend
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
 
